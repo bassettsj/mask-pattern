@@ -1,0 +1,29 @@
+{
+  "generator-angularjs-library": {
+    "props": {
+      "author": {
+        "name": "Steven Bassett",
+        "email": "steven.j.bassett@gmail.com"
+      },
+      "libraryName": {
+        "original": "mask-pattern",
+        "camelized": "maskPattern",
+        "dasherized": "mask-pattern",
+        "slugified": "mask-pattern",
+        "parts": [
+          "mask",
+          "pattern"
+        ]
+      },
+      "includeModuleDirectives": true,
+      "includeModuleFilters": false,
+      "includeModuleServices": false,
+      "includeAngularModuleResource": false,
+      "includeAngularModuleCookies": false,
+      "includeAngularModuleSanitize": false,
+      "librarySrcDirectory": "src/mask-pattern",
+      "libraryUnitTestDirectory": "test/unit/mask-pattern",
+      "libraryUnitE2eDirectory": "test/e2e/mask-pattern"
+    }
+  }
+}

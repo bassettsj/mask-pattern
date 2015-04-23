@@ -1,0 +1,23 @@
+{
+  "name": "mask-pattern",
+  "version": "0.1.0",
+  "authors": [
+    {
+      "name": "Steven Bassett",
+      "email": "steven.j.bassett@gmail.com"
+    }
+  ],
+  "main": ["dist/mask-pattern.js"],
+  "ignore": [
+    "src",
+    "test",
+    "Gruntfile.js",
+    "**/.*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular-mocks": ">=1.2.0",
+    "angular-scenario": ">=1.2.0",
+    "angular": ">=1.2.0"
+  }
+}
