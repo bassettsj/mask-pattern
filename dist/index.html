@@ -18,6 +18,7 @@
    ])
      .controller('ExampleController', ['$scope', function($scope) {
        $scope.user = {name: 'guest'};
+       $scope.pattern = 'dogs';
      }]);
   </script>
 <div class="container" ng-controller="ExampleController">
@@ -35,6 +36,10 @@
       </div>
     </div>
 
+    <input type="text" ng-model="newValue" ng-pattern="pattern" required sb-mask-pattern ng-trim="false">
+    <input type="text" ng-model="pattern">
+    <tt>newValue: {{newValue | json }}</tt>
+    <tt>pattern: {{pattern}}</tt>
   </form>
   <hr>
   <tt>user = {{user}}</tt><br/>

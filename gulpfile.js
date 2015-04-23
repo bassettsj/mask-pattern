@@ -74,7 +74,7 @@ gulp.task('jshint', function () {
  */
 gulp.task('test-src', function (done) {
   karma.start({
-    configFile: __dirname + '/karma-src.conf.js',
+    configFile: __dirname + '/karma.conf.js',
     singleRun: true
   }, function (err) {
     if (err) {
