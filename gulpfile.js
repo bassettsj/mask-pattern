@@ -48,14 +48,13 @@ gulp.task('build', function() {
  * Process
  */
 gulp.task('process-all', function (done) {
-  runSequence('jshint', 'test-src', 'build', done);
+  runSequence('jshint', 'build', 'test-src', 'build', done);
 });
 
 /**
  * Watch task
  */
 gulp.task('watch', function () {
-  global.gulpWatching = true;
   // Watch JavaScript files
   gulp.watch(sourceFiles, ['process-all']);
 });
@@ -67,8 +66,7 @@ gulp.task('jshint', function () {
   return gulp.src(lintFiles)
     .pipe(plumber())
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
-    .pipe(jshint.reporter('fail'));
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 /**
@@ -77,11 +75,26 @@ gulp.task('jshint', function () {
 gulp.task('test-src', function (done) {
   karma.start({
     configFile: __dirname + '/karma-src.conf.js',
-    singleRun: !!global.gulpWatching,
+    singleRun: true
   }, function (err) {
     if (err) {
       console.error(err);
     }
+    done();
+  });
+});
+
+/**
+ * Run tests and watch.
+ */
+gulp.task('test', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js'
+  }, function (err) {
+    if (err) {
+      console.error(err);
+    }
+    done();
   });
 });
 
@@ -95,6 +108,5 @@ gulp.task('serve', [], function () {
 });
 
 gulp.task('default', function () {
-  global.gulpWatching = true;
   runSequence('process-all', 'watch', 'serve');
 });

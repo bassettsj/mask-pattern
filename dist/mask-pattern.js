@@ -17,16 +17,39 @@
 
   var _angular2 = _interopRequire(_angular);
 
-  _angular2.module('sjb.mask-input', []).directive('sjbMaskInput', function () {
+  var ng = _angular2;
+
+  _angular2.module('sb.maskPattern', []).directive('sbMaskPattern', function () {
     return {
       restrict: 'A',
-      require: 'ngModel',
-      link: function postLink(scope, elements, attrs, modelCtrl) {
+      require: '?ngModel',
+      link: function postLink(scope, element, attr, ngModel) {
+        if (!ngModel && (!!attr.pattern || !!attr.ngPattern)) {
+          return;
+        }var regexp,
+            patternExp = attr.ngPattern || attr.pattern;
+        attr.$observe('pattern', function (regex) {
+          if (ng.isString(regex) && regex.length > 0) {
+            regex = new RegExp('^' + regex + '$');
+          }
+          regexp = regex || undefined;
+        });
 
-        debugger;
+        function parse(viewValue) {
+          if (!!regexp && viewValue.length) {
+            if (!regexp.test(viewValue)) {
+              var currentValue = ngModel.$modelValue;
+              ngModel.$setViewValue(currentValue);
+              ngModel.$render();
+              return currentValue;
+            }
+          }
+          return viewValue;
+        }
+        ngModel.$parsers.unshift(parse);
       }
     };
   });
 
-  module.exports = _angular2.module('sjb.maskInput');
+  module.exports = _angular2.module('sb.maskPattern');
 });

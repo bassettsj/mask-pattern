@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>Example - example-input-directive-production</title>
 
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.js"></script>
+  <script src="mask-pattern.js"></script>
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
-  <scrip src="mask-pattern.js"></script>
 
 
 </head>
@@ -16,19 +17,24 @@
      'sb.maskPattern'
    ])
      .controller('ExampleController', ['$scope', function($scope) {
-       $scope.user = {name: 'guest', last: 'visitor'};
+       $scope.user = {name: 'guest'};
      }]);
-</script>
-<div ng-controller="ExampleController">
+  </script>
+<div class="container" ng-controller="ExampleController">
+
   <form name="myForm">
-    <label>
-       User name:
-       <input type="text" name="userName" ng-model="user.name" sb-mask-pattern required pattern="[a-zA-Z0-9]+">
-    </label>
-    <div role="alert">
-      <span class="error" ng-show="myForm.userName.$error.required">
-       Required!</span>
+
+    <div class="form-group">
+      <label class="control-label" for="userName">
+         User name:
+      </label>
+      <input class="form-control" type="text" name="userName" id="userName" ng-model="user.name" sb-mask-pattern required pattern="[a-zA-Z0-9]+" ng-trim="false">
+      <div role="alert" class="help-block">
+        <span class="error" ng-show="myForm.userName.$error.required">
+         Required!</span>
+      </div>
     </div>
+
   </form>
   <hr>
   <tt>user = {{user}}</tt><br/>
